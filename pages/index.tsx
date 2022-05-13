@@ -8,21 +8,26 @@ import { useEffect, useState } from 'react';
 
 const Home: NextPage = () => {
 
-  const [post, setPost] = useState();
+  const [post, setPost] = useState([]);
 
   useEffect(() => {
    async function fetchData() {
-     try {
-        const snapshot = await db.ref('/properties').once('value');
-        setPost(snapshot.val());
-      } catch (error) {
+      try {
+        const snapshot = await db.ref('/properties').once('value', (snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+            const childData = childSnapshot.val();
+            // @ts-ignore
+            setPost(post => [...post, childData]);
+          });
+        });
+      }
+      catch (error) {
         console.log(error);
       }
     }
     fetchData();
   }, []);
 
-  // TODO: To create new property
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
@@ -47,7 +52,9 @@ const Home: NextPage = () => {
         </Link>
         <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
           {
-            
+            post.map((item, index) => {
+              return <PropertyCard name={item?.name || "name"} description={item?.description || "description"} size={item?.size || "size"} />
+            })
           }
         </div>
       </main>

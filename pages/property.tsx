@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import {useState} from 'react';
 import {db} from '../lib/firebase';
 
@@ -87,6 +88,12 @@ const Property = () => {
                     <div className="mt-8 mb-8 flex flex-col items-center justify-center">
                         <button type="submit" className="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Add</button>
                     </div>
+                    <Link href="/">
+                        <div className="mt-8 mb-8 flex flex-col items-center justify-center">
+                            <div className="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-blue-700 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">HOME</div>
+                        </div>
+                    </Link>
+                    
                 </form>
                 </div>
             </div>
