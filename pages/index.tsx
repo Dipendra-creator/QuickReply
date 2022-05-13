@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 
 const Home: NextPage = () => {
 
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useState<any []>([]);
 
   useEffect(() => {
    async function fetchData() {
