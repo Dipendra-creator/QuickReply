@@ -1,34 +1,35 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 import PropertyCard from "../components/PropertyCard";
 import Link from "next/link";
 import {db} from "../lib/firebase";
-import { useEffect, useState } from 'react';
-// Visit https://firebase.google.com/docs/database/security to learn more about security rules.
 
-const Home: NextPage = () => {
+interface Post {
+    name: string;
+    description: string;
+    size: string;
+}
 
-  const [post, setPost] = useState<any []>([]);
+export const getServerSideProps = async () => {
+  let posts: Post [] = [];
+  try {
+    const snapshot = await db.ref('/properties').once('value', (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        const childData = childSnapshot.val();
+        posts = [...posts, childData];
+      });
+    });
+  } catch (error) {
+    console.log(error);
+  }
+  return {
+    props: {
+      posts,
+    },
+  };
+};
 
-  useEffect(() => {
-   async function fetchData() {
-      try {
-        const snapshot = await db.ref('/properties').once('value', (snapshot) => {
-          snapshot.forEach((childSnapshot) => {
-            const childData = childSnapshot.val();
-            // @ts-ignore
-            setPost(post => [...post, childData]);
-          });
-        });
-      }
-      catch (error) {
-        console.log(error);
-      }
-    }
-    fetchData();
-  }, []);
 
-
+function Home({ posts }: { posts: Post[] }) {  
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
@@ -51,11 +52,13 @@ const Home: NextPage = () => {
           </div>
         </Link>
         <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          {
-            post.map((item, index) => {
-              return <PropertyCard name={item?.name || "name"} description={item?.description || "description"} size={item?.size || "size"} />
-            })
-          }
+          {posts.map((item, index) => {
+            return <PropertyCard
+              key={index}
+              name={item.name || "name"}
+              description={item.description || "description"}
+              size={item.size || "size"} />;
+          })}
         </div>
       </main>
 
@@ -70,7 +73,7 @@ const Home: NextPage = () => {
         </a>
       </footer>
     </div>
-  )
+  );
 }
 
 export default Home

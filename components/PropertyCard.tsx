@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { db } from "../lib/firebase";
 
 const PropertyCard = (props: {
     name: string;

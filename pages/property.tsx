@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import {useState} from 'react';
+import React, {useState} from 'react';
 import {db} from '../lib/firebase';
+
 
 const Property = () => {
     const [name, setName] = useState("");
@@ -28,7 +29,7 @@ const Property = () => {
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
     }
-    const handleDescriptionChange = (e: any) => {
+    const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setDescription(e.target.value);
     }
     const handleSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,7 +48,6 @@ const Property = () => {
             </h1>
 
             <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around flex max-w-4xl sm:w-full border">
-                {/* TODO: To add new property */}
                 <div>
                 <form onSubmit={handleSubmit}>
                     <div className="mt-8 flex flex-col items-center justify-center">
