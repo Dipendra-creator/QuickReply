@@ -4,6 +4,7 @@ import PropertyCard from "../components/PropertyCard";
 import Link from "next/link";
 import {db} from "../lib/firebase";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import PersonalFooter from '../components/PersonalFooter';
 import { useState } from 'react';
 =======
@@ -15,6 +16,15 @@ const Home: NextPage = () => {
 
   const [post, setPost] = useState<any []>([]);
 
+=======
+import { useEffect, useState } from 'react';
+// Visit https://firebase.google.com/docs/database/security to learn more about security rules.
+
+const Home: NextPage = () => {
+
+  const [post, setPost] = useState<any []>([]);
+
+>>>>>>> parent of 55fed35 (Some Updations for Server Side Rendering)
   useEffect(() => {
    async function fetchData() {
       try {
@@ -48,6 +58,7 @@ function sleep(ms:number) {
 // }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 function Home({ posts }: { posts: Post[] }) {  
   const [sorted, setSorted] = useState(false);
 
@@ -55,6 +66,8 @@ function Home({ posts }: { posts: Post[] }) {
     (sorted)?setSorted(false):setSorted(true);
   }
 
+=======
+>>>>>>> parent of 55fed35 (Some Updations for Server Side Rendering)
 =======
 >>>>>>> parent of 55fed35 (Some Updations for Server Side Rendering)
   return (
@@ -108,6 +121,9 @@ function Home({ posts }: { posts: Post[] }) {
               return <PropertyCard name={item?.name || "name"} description={item?.description || "description"} size={item?.size || "size"} />
             })
           }
+<<<<<<< HEAD
+>>>>>>> parent of 55fed35 (Some Updations for Server Side Rendering)
+=======
 >>>>>>> parent of 55fed35 (Some Updations for Server Side Rendering)
         </div>
       </main>

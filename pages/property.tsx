@@ -1,5 +1,6 @@
 import Link from 'next/link';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, {useState} from 'react';
 import PersonalFooter from '../components/PersonalFooter';
 import {db} from '../lib/firebase';
@@ -14,6 +15,11 @@ function spiner({ isTrue }: { isTrue: Boolean; }) {
     }
 }
 
+=======
+import {useState} from 'react';
+import {db} from '../lib/firebase';
+
+>>>>>>> parent of 55fed35 (Some Updations for Server Side Rendering)
 =======
 import {useState} from 'react';
 import {db} from '../lib/firebase';
@@ -70,6 +76,9 @@ const Property = () => {
 =======
             <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around flex max-w-4xl sm:w-full border">
                 {/* TODO: To add new property */}
+<<<<<<< HEAD
+>>>>>>> parent of 55fed35 (Some Updations for Server Side Rendering)
+=======
 >>>>>>> parent of 55fed35 (Some Updations for Server Side Rendering)
                 <div>
                 <form onSubmit={handleSubmit}>
