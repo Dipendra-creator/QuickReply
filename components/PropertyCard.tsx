@@ -8,7 +8,7 @@ const PropertyCard = (props: {
     size: string;
 }) => {
     return (
-        <div className="mt-6 w-96 rounded-xl border p-6 text-left">
+        <div className="mt-6 w-96 rounded-xl border p-6 text-left hover:animate-pulse">
             <h2 className="text-2xl font-bold">
                 Name: {props.name}
             </h2>
