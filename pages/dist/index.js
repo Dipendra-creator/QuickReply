@@ -48,8 +48,6 @@ var head_1 = require("next/head");
 var PropertyCard_1 = require("../components/PropertyCard");
 var link_1 = require("next/link");
 var firebase_1 = require("../lib/firebase");
-var PersonalFooter_1 = require("../components/PersonalFooter");
-var react_1 = require("react");
 exports.getServerSideProps = function () { return __awaiter(void 0, void 0, void 0, function () {
     var posts, snapshot, error_1;
     return __generator(this, function (_a) {
@@ -80,48 +78,24 @@ exports.getServerSideProps = function () { return __awaiter(void 0, void 0, void
         }
     });
 }); };
-function sleep(ms) {
-    return new Promise(function (a, b) {
-        setTimeout(a, ms);
-    });
-}
-// async function print() {
-//   var date = new Date();
-//   console.log(date, 1);
-//   await sleep(2000);
-//   date = new Date();
-//   console.log(date, 2);
-// }
 function Home(_a) {
     var posts = _a.posts;
-    var _b = react_1.useState(false), sorted = _b[0], setSorted = _b[1];
-    function handleSort() {
-        (sorted) ? setSorted(false) : setSorted(true);
-    }
     return (React.createElement("div", { className: "flex min-h-screen flex-col items-center justify-center py-2" },
         React.createElement(head_1["default"], null,
             React.createElement("title", null, "Quick Reply"),
             React.createElement("link", { rel: "icon", href: "/favicon.ico" })),
         React.createElement("main", { className: "flex w-full flex-1 flex-col items-center justify-center px-20 text-center" },
-            React.createElement("h1", { className: "text-6xl font-bold mb-8" },
+            React.createElement("h1", { className: "text-6xl font-bold" },
                 "Welcome to",
                 ' ',
                 React.createElement("a", { className: "text-blue-600", href: "https://www.quickreply.ai/" }, "Quick Reply!")),
             React.createElement(link_1["default"], { href: "/property" },
-                React.createElement("div", { className: "animate-bounce mt-8 w-96 rounded-xl border p-6 text-left hover:text-blue-600" },
+                React.createElement("div", { className: "mt-6 w-96 rounded-xl border p-6 text-left" },
                     React.createElement("h2", { className: "text-2xl font-bold" }, "Add New Property"))),
-            React.createElement("div", { className: "p-2 mt-6 mb-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full" }, posts.sort(function (a, b) {
-                if (sorted) {
-                    return parseInt(a.size) - parseInt(b.size);
-                }
-                else {
-                    return 0;
-                }
-            }).map(function (item, index) {
+            React.createElement("div", { className: "mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full" }, posts.map(function (item, index) {
                 return React.createElement(PropertyCard_1["default"], { key: index, name: item.name || "name", description: item.description || "description", size: item.size || "size" });
-            })),
-            React.createElement("div", { className: "m-2 mt-8 mb-8 flex flex-col items-center justify-center" },
-                React.createElement("button", { className: "px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-blue-700 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600", onClick: handleSort }, "Sort"))),
-        React.createElement(PersonalFooter_1["default"], null)));
+            }))),
+        React.createElement("footer", { className: "mt-8 flex h-24 w-full items-center justify-center border-t" },
+            React.createElement("a", { className: "flex items-center justify-center gap-2", href: "https://github.com/Dipendra-creator", target: "_blank", rel: "noopener noreferrer" }, "Created by Dipendra Bhardwaj"))));
 }
 exports["default"] = Home;
